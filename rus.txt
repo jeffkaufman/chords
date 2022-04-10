@@ -5,7 +5,8 @@ C D G
 E B A
 A D E
 Am E C G
-C F G D G D A C
+C F G D
+G D A C
 G C D
 C G E A F
 A D E
@@ -126,5 +127,151 @@ C F G Am Dm
 G C D Am A
 D A G F#m Bm Em
 D G Em A Bm C
+A E D F#m
+C F Dm G Am
+G Am D C
+C Am F G
+E A B
+G C Am D
+C Em Dm F G
+D G A
+D G E A Em
+G C D Em Am
+G C D A
+E B A
+D G A
+G C D Em
+G C D Am
+C G F Am Dm
+C G F Em Am C Dm D
+G Em D C
+D A G
+E B E A Em
+C G Am D E Dm
+E A D
+A D G
+A E D
+G C D
+G D C
+D G A
+Em D
+Em C B Am
+G Em D C
+D G A Bm
+C Am F Em E Dm
+D G A Bm
+A E D
+D G A F
+C Am F G Dm
+C Dm G F Em Am
+G C Am F Dm Em
+D G E A
+C Am Em F G
+D C G F A
+D G Bm Em
+G A D
+D A Em C Bm G
+Em D G B A C
+C F G Em Am Dm
+D Em A
+C Am F G
+D A G E
+D A
+G D C
+D A G
+D G A
+C F G Dm
+D A G
+D G A
+C G F
+G A D
+C F G
+D G A E
+D G A F#m Em Bm E
+G D C
+D A
+D A G E
+D A G
+D A G E
+D A
+G C F
+C Am F G
+D A G
+D G A
+C F G
+D Em A
+G Bm C A D
+C F G
+D A G
+D A
+C G
+Am E C G Dm F
+D G A
+D A
+C F G
+D A Em
+C G F D Em A
+A D E
+C Fm D G Am Em
+C G Am F C G F
+D G E A
+C G F D
+Dm C
+E A
+G D Em Am A
+C F Am G
+E B A
+Am G Em
+Am Dm Em F C G
+C F G
+D A G
+G C D Am
+C G F Am Dm
+Em B G D
+C F G Am
+C G F
+D G E A
+D G A
+G C B Em
+D A G
+D G A E
+D A
+Dm A
+G D C
+G D C Bm A
+Dm C
+D G A
+Am E Dm G C
+C Em F G
+C F G Em
+D A G E
+C Am F Fm Bb D
+G D Em C Am
+D G A
+C Am F G Dm
+C Am Dm G Em F
+G C Am D
+D G A Bb B E F#
+C F G Am D
+A B E
+C G Am F Em Bb
+A G D Em
+D F# G E B A
+Am Dm E C G G
+D Bm Em G A
+D Em A G
+C G E F
+G Bm Dm E Am F
+E A B
+C F G Em Dm
+D A G Bm C
+D A G E
+D A
+C D G
+E B A
+A D E
+C F G D
+
+
 
 
