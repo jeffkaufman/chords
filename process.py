@@ -74,7 +74,6 @@ def reinterpret(tune, root):
 
 def evaluate(tunes,
              options="",
-             graph=False,
              relative_minor=True,
              mixolydian=True,
              thirds=True):
@@ -120,46 +119,84 @@ def evaluate(tunes,
     if thirds:
       for i, note in enumerate(NOTES):
         for j, full_note in enumerate([note, note.lower()]):
-          if graph:
-            print("%4d  %4s: %s" % (counts[i][j], full_note, "*" * counts[i][j]))
-          else:
-            print("%s\t%s" % (full_note, counts[i][j]))
+          print("%s\t%s" % (full_note, counts[i][j]))
     else:
       for i, note in enumerate(NOTES):
         count = counts[i][0] + counts[i][1]
-        if graph:
-          print("%4d  %4s: %s" % (count, note, "*" * count))
-        else:
-          print("%s\t%s" % (note, count))
+        print("%s\t%s" % (note, count))
 
-def consider(tunes, options_list, table=True):
-  if table:
-    print("<table border=1, cellpadding=5>")
-    print("<tr><th>Chords<td>Thirds<td>Open")
+def evaluate_thorough(tunes,
+                      options="",
+                      thirds=True,
+                      print_issues=False):
+  if type(options) == type(""):
+    options = options.split()
 
+  if not thirds:
+    options = [option.lower() for option in options]
+
+  counts = []  # note index -> [major count, minor count]
+  for note in NOTES:
+    counts.append([0, 0])
+
+  playable = 0
+
+  for tune in tunes:
+    can_play = 0
+    best = []
+    for scale_degree in range(12):
+      root = ParsedChord(
+        raw="_", num=tune.chords[0].num + scale_degree, is_minor=False)
+      interpreted = reinterpret(tune, root)
+
+      if not thirds:
+        interpreted = [chord.lower() for chord in interpreted]
+
+      s = sum(chord in options for chord in interpreted)
+      if s > can_play:
+        can_play = s
+        best = interpreted
+    if can_play == len(interpreted):
+      playable += 1
+    elif print_issues:
+      print("%2d/%2d  %-30s %-30s" % (
+        can_play, len(best),
+        tune.raw, " ".join(best)))
+
+  return playable / len(tunes)
+    
+def consider(tunes, options_list, **kwargs):
+  print("<table border=1, cellpadding=5>")
+  print("<tr><th>Chords<td>Thirds<td>Open")
+
+  ev = evaluate
+  if True:
+    ev = evaluate_thorough
+    
   for options in options_list:
-    if table:
-      print ("<tr><td>%s<td>%.0f%%<td>%.0f%%" % (
-        options,
-        evaluate(tunes, options, thirds=True) * 100,
-        evaluate(tunes, options, thirds=False) * 100))
-    else:
-      print("%.2f\t%.2f\t%s" % (
-        evaluate(tunes, options, thirds=True),
-        evaluate(tunes, options, thirds=False),
-        options))
+    print ("<tr><td>%s<td>%.0f%%<td>%.0f%%" % (
+      options,
+      ev(tunes, options, thirds=True, **kwargs) * 100,
+      ev(tunes, options, thirds=False, **kwargs) * 100))
 
-  if table:
-    print ("</table>")
+  print ("</table>")
 
 if __name__ == "__main__":
   tunes = load(sys.argv[1:])
-  #evaluate(tunes)
-  consider(tunes, [
-    "I IV V",
-    "I IV V vi",
-    "I IV V vi",
-    "I iii IV V vi",
-    "I ii IV V vi",
-    "I ii iii IV V vi",
-  ])
+  if False:
+    evaluate(tunes)
+  elif True:
+    consider(tunes, ["I ii II iii III IV V vi"], print_issues=True)
+  else:
+    consider(tunes, [
+      "I IV V",
+      "I iii IV V",
+      "I ii IV V",
+      "I IV V vi",
+      "I iii IV V vi",
+      "I ii IV V vi",
+      "I ii iii IV V vi",
+      "I ii iii III IV V vi",
+      "I ii II iii IV V vi",
+      "I ii II iii III IV V vi",
+    ])
